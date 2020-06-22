@@ -64,3 +64,36 @@ set_acceleration(float ax, float ay, float az, mavlink_set_position_target_local
 	sp.afz  = az;
 }
 
+void
+Autopilot_Interface::
+change_mode(int mode_num)
+{
+
+	mavlink_message_t message;
+	mavlink_msg_set_mode_pack(255, 1, &message,3, 1, mode_num);
+	//mavlink_msg_set_mode_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+                               //uint8_t target_system, uint8_t base_mode, uint32_t custom_mode)
+	// Send the message
+	port->write_message(message);
+
+}
+
+void
+Autopilot_Interface::
+change_param(int autopilotid, const char paramid , float paramval, int type )
+{
+
+	mavlink_message_t message;
+	mavlink_msg_param_set_pack(255, 1, &message,3,autopilotid, paramid, paramval, type );
+	//static inline uint16_t 
+	//mavlink_msg_param_set_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
+                              // uint8_t target_system, uint8_t target_component, const char *param_id, float param_value, uint8_t param_type)
+	// Send the message
+	port->write_message(message);
+
+}
+
+
+
+
+
