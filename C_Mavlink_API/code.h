@@ -166,7 +166,8 @@ public:
 	int	 arm_disarm( bool flag );
 	void enable_offboard_control();
 	void disable_offboard_control();
-	void change_mode(int mode_num);	
+	void change_mode(int mode_num);
+	void change_param(int autopilotid, const char paramid , float paramval, int type );
 
 	void start();
 	void stop();
