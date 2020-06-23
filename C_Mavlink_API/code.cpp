@@ -94,6 +94,40 @@ change_param(int autopilotid, const char paramid , float paramval, int type )
 }
 
 
+int
+Autopilot_Interface::
+arm_disarm( bool flag )
+{
+	if(flag)
+	{
+		printf("ARM ROTORS\n");
+	}
+	else
+	{
+		printf("DISARM ROTORS\n");
+	}
+
+	// Prepare command for off-board mode
+	mavlink_command_long_t com = { 0 };
+	com.target_system    = system_id;
+	com.target_component = autopilot_id;
+	com.command          = MAV_CMD_COMPONENT_ARM_DISARM;
+	com.confirmation     = true;
+	com.param1           = (float) flag;
+	com.param2           = 21196;
+
+	// Encode
+	mavlink_message_t message;
+	mavlink_msg_command_long_encode(system_id, companion_id, &message, &com);
+
+	// Send the message
+	int len = port->write_message(message);
+
+	// Done!
+	return len;
+}
+
+
 
 
 
