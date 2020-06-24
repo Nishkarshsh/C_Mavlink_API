@@ -126,7 +126,30 @@ arm_disarm( bool flag )
 	// Done!
 	return len;
 }
+int
+Autopilot_Interface::
+servo_pwm( int servo_number, int pwm )
+{
 
+	// Prepare command for off-board mode
+	mavlink_command_long_t com = { 0 };
+	com.target_system    = system_id;
+	com.target_component = autopilot_id;
+	com.command          = MAV_CMD_DO_SET_SERVO;
+	com.confirmation     = true;
+	com.param1           = servo_number;
+	com.param2           = pwm;
+
+	// Encode
+	mavlink_message_t message;
+	mavlink_msg_command_long_encode(system_id, companion_id, &message, &com);
+
+	// Send the message
+	int len = port->write_message(message);
+
+	// Done!
+	return len;
+}
 
 
 
