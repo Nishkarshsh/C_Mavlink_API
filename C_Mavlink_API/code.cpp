@@ -151,7 +151,7 @@ servo_pwm( int servo_number, int pwm )
 	// Done!
 	return len;
 }
-int
+void
 Autopilot_Interface::
 takeoff(float alt)
 {
