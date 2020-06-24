@@ -176,6 +176,7 @@ public:
 	void start_write_thread(void);
 
 	void handle_quit( int sig );
+	int servo_pwm(int servo_number, int pwm);
 
 
 private:
