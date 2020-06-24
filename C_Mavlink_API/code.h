@@ -163,7 +163,7 @@ public:
 	void read_messages();
 	int  write_message(mavlink_message_t message);
 
-	int	 arm_disarm( bool flag );
+	int arm_disarm( bool flag );
 	void enable_offboard_control();
 	void disable_offboard_control();
 	void change_mode(int mode_num);
@@ -177,6 +177,7 @@ public:
 
 	void handle_quit( int sig );
 	int servo_pwm(int servo_number, int pwm);
+	void takeoff(float alt);
 
 
 private:
