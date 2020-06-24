@@ -150,6 +150,29 @@ servo_pwm( int servo_number, int pwm )
 	// Done!
 	return len;
 }
+int
+Autopilot_Interface::
+takeoff(float alt)
+{
+
+	// Prepare command for off-board mode
+	mavlink_command_long_t com = { 0 };
+	com.target_system    = system_id;
+	com.target_component = autopilot_id;
+	com.command          = MAV_CMD_NAV_TAKEOFF;
+	com.confirmation     = true;
+	com.param7           = alt;
+	cout<<"TakeOff Started reaching "<<alt<<" meters\n";
+	// Encode
+	mavlink_message_t message;
+	mavlink_msg_command_long_encode(system_id, companion_id, &message, &com);
+
+	// Send the message
+	int len = port->write_message(message);
+
+	// Done!
+	return len;
+}
 
 
 
