@@ -179,8 +179,40 @@ Autopilot_Interface::
 read_servo(int servo_number)
 {
 	mavlink_servo_output_raw_t servo = messages.servo;
-	string servoin = "servo"+servo_number+"_raw";
-	cout<<"Servo "<<servo_number<< " PWM = "<<servo.servoin<<endl;
+	if(servo_number == 1)
+		pwm = servo.servo1_raw;
+	else if(servo_number == 2)
+		pwm = servo.servo2_raw;
+	else if(servo_number == 3)
+		pwm = servo.servo3_raw;
+	else if(servo_number == 4)
+		pwm = servo.servo4_raw;
+	else if(servo_number == 5)
+		pwm = servo.servo5_raw;
+	else if(servo_number == 6)
+		pwm = servo.servo6_raw;
+	else if(servo_number == 7)
+		pwm = servo.servo7_raw;
+	else if(servo_number == 8)
+		pwm = servo.servo8_raw;
+	else if(servo_number == 9)
+		pwm = servo.servo9_raw;
+	else if(servo_number == 10)
+		pwm = servo.servo10_raw;
+	else if(servo_number == 11)
+		pwm = servo.servo11_raw;
+	else if(servo_number == 12)
+		pwm = servo.servo12_raw;
+	else if(servo_number == 13)
+		pwm = servo.servo13_raw;
+	else if(servo_number == 14)
+		pwm = servo.servo14_raw;
+	else if(servo_number == 15)
+		pwm = servo.servo15_raw;
+	else if(servo_number == 16)
+		pwm = servo.servo16_raw;
+	
+	cout<<"Servo "<<servo_number<< " PWM = "<<pwm<<endl;
 }
 
 
