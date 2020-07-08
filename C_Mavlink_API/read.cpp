@@ -95,6 +95,13 @@ read_messages()
 					this_timestamps.attitude = current_messages.time_stamps.attitude;
 					break;
 				}
+				case MAVLINK_MSG_ID_SERVO_OUTPUT_RAW:
+				{
+					mavlink_msg_servo_output_raw_decode(&message, &(current_messages.servo));
+					current_messages.time_stamps.servo = get_time_usec();
+					this_timestamps.servo = current_messages.time_stamps.servo;
+					break;
+				}
 
 				default:
 				{
@@ -118,6 +125,7 @@ read_messages()
 //				this_timestamps.position_target_global_int &&
 //				this_timestamps.highres_imu                &&
 //				this_timestamps.attitude                   &&
+//				this_timestamps.servo 					   && // entered by saransh
 				this_timestamps.sys_status
 				;
 
