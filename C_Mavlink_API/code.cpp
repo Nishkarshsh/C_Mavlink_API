@@ -174,6 +174,14 @@ takeoff(float alt)
 	// Done!
 	return len;
 }
+int
+Autopilot_Interface::
+read_servo(int servo_number)
+{
+	mavlink_servo_output_raw_t servo = messages.servo;
+	string servoin = "servo"+servo_number+"_raw";
+	cout<<"Servo "<<servo_number<< " PWM = "<<servo.servoin<<endl;
+}
 
 
 
